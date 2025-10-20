@@ -1,5 +1,6 @@
 package use_case.logout;
 
+import entity.User;
 import use_case.change_password.ChangePasswordOutputData;
 
 /**
@@ -18,8 +19,10 @@ public class LogoutInteractor implements LogoutInputBoundary {
     @Override
     public void execute() {
 
+
+
+        final LogoutOutputData logoutOutputData = new LogoutOutputData(userDataAccessObject.getCurrentUsername());
         userDataAccessObject.setCurrentUsername(null);
-        final LogoutOutputData logoutOutputData = new LogoutOutputData(null);
         logoutPresenter.prepareSuccessView(logoutOutputData);
         // * set the current username to null in the DAO
         // * instantiate the `LogoutOutputData`, which needs to contain the username.
